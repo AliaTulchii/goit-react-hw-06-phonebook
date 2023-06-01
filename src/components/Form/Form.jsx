@@ -8,21 +8,36 @@ import { v4 } from 'uuid';
 
 
 
- const Form = () => {
-     const dispatch = useDispatch()
-     const [nameContact, setNameContact] = React.useState('')
-     const [numberContact, setNumberContact] = React.useState('')
+const Form = () => {
+    const dispatch = useDispatch()
+    const [nameContact, setNameContact] = React.useState('')
+    const [numberContact, setNumberContact] = React.useState('')
 
     const addContactHandler = () => {
-      const contact = {
+    
+    const contact = {
         id: v4(),
         name: nameContact,
         number: numberContact,
         }
         
+        const isValidate = validateForm();
+        if (!isValidate) return;
+        
         dispatch(addContact(contact))
+        
         setNameContact('')
         setNumberContact('')
+    }
+    
+    const validateForm = () => {
+        
+        if (!nameContact || !numberContact) {
+            alert('This field empty!');
+            return false;
+        }
+
+        return true;
     }
     
     
