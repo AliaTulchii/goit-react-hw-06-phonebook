@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef} from 'react';
 import css from './Filter.module.css'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
