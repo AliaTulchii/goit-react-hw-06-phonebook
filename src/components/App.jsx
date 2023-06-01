@@ -7,10 +7,6 @@ import ContactListItem from './ContactsList/ContactListItem';
 
 
 
-
-
-
-
 const App = () => {
  
   const contacts = useSelector((state) => state.contact.contacts)

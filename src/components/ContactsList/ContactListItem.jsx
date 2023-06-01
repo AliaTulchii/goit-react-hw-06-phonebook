@@ -30,5 +30,11 @@ const ContactListItem = ({ contact }) => {
 export default ContactListItem
 
 ContactListItem.propTypes = {
-    contacts: PropTypes.string.isRequired,
+    contacts: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            number: PropTypes.string.isRequired,
+        })
+    )
 }
