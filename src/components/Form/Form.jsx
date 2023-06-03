@@ -1,8 +1,9 @@
 import React from 'react';
 import css from './Form.module.css'
-import { useDispatch } from "react-redux";
-import { addContact } from "features/contactSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addContact } from "features/contact/contactSlice";
 import { v4 } from 'uuid';
+import getContact from 'features/contact/getContact';
 
 
 
@@ -12,10 +13,11 @@ const Form = () => {
     const dispatch = useDispatch()
     const [nameContact, setNameContact] = React.useState('')
     const [numberContact, setNumberContact] = React.useState('')
+    const contacts = useSelector(getContact)
 
     const addContactHandler = () => {
     
-    const contact = {
+    const person = {
         id: v4(),
         name: nameContact,
         number: numberContact,
@@ -23,8 +25,17 @@ const Form = () => {
         
         const isValidate = validateForm();
         if (!isValidate) return;
-        
-        dispatch(addContact(contact))
+
+        const exist = contacts.find(contact => contact.name.toLowerCase().trim() === person.name.toLowerCase().trim());
+
+        if (exist) {
+        alert(`${person.name} is already in contacts list`);
+        return;
+    }
+    
+    // setNameContact((prevState) => [person, ...prevState],
+    // ) 
+        dispatch(addContact(person))
         
         setNameContact('')
         setNumberContact('')

@@ -9,22 +9,30 @@ import {
   } from 'redux-persist'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
-import contactSlice from "features/contactSlice";
+import contactSlice from "features/contact/contactSlice";
+import filterSlice from "features/filter/filterSlice";
 
 const persistConfig = {
-    key: 'root',
-    storage,
+  key: 'root',
+  storage,
+  whitelist: ['contacts']
 }
 
 const persistedContactsReducer = persistReducer(
-    persistConfig,
-    contactSlice
+  persistConfig,
+  contactSlice,
+  
+)
+
+const persistedFiltersReducer = persistReducer(
+  persistConfig,
+  filterSlice,
 )
 
 export const store = configureStore({
     reducer: {
-        // contact: contactSlice,
-        contact: persistedContactsReducer,
+    contact: persistedContactsReducer,
+    filter: persistedFiltersReducer,
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

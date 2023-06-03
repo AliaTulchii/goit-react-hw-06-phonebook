@@ -4,7 +4,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 import person from './person.png'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
-import { removeContact } from 'features/contactSlice';
+import { removeContact } from 'features/contact/contactSlice';
 
 const ContactListItem = ({ contact }) => {
     const dispatch = useDispatch();

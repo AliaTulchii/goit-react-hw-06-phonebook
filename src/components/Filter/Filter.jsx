@@ -1,34 +1,23 @@
-import React, { useRef} from 'react';
-// import React, { useState } from 'react';
-
+import React from 'react';
 import css from './Filter.module.css'
-// import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
-import { filterChange } from 'features/contactSlice';
+import { searchByName } from 'features/filter/filterSlice';
 
 const Filter = () => {
     const dispatch = useDispatch()
-    const filterRef = useRef('');
-    // const [filter, setFilter] = useState('')
-
-    const filterChangeHandler = () => {
-    dispatch(filterChange(filterRef.current.value))
+    
+    const filterChangeHandler = (e) => {
+    dispatch(searchByName(e.currentTarget.value))
   }
     
-    // const filterChangeHandler = (filter) => {
-    //     const { value } = filter.currentTarget;
-    //     setFilter(value);
-    //     dispatch(filterChange(filter))
-    //   }
+   
 
 
     return (
         <input
             type='text'
             name='filter'
-            ref={filterRef}
-            // value={filter}
-            onChange={() => filterChangeHandler()}
+            onChange={filterChangeHandler}
             placeholder='Enter name for search'
             className={css.Filter__input}
         />

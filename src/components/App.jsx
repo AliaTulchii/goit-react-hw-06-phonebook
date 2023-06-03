@@ -2,17 +2,11 @@
 import Form from './Form/Form';
 import Filter from './Filter/Filter';
 import css from './App.module.css'
-import { useSelector } from 'react-redux';
-import ContactListItem from './ContactsList/ContactListItem';
+import ContactList from './ContactsList/ContactList';
 
 
 
 const App = () => {
- 
-  const contacts = useSelector((state) => state.contact.contacts)
-  
-  
-
   
     return (
     <div className={css.ContactsList}>
@@ -22,11 +16,7 @@ const App = () => {
 
         <h2 className={css.ContactList__titleBlue}>Contacts</h2>
           <Filter />
-          {contacts?.map((contact) => (
-            <ContactListItem
-              key={contact.id}
-              contact={contact}
-          />))}
+          <ContactList/>
         
         </div>
         
@@ -36,7 +26,6 @@ const App = () => {
 
 
 export default App;
-
 
 
 
